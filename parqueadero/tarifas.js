@@ -27,8 +27,14 @@ const TOPE_MOTO = 12000;
 // Corre npm test, mira cómo fallan y escribe el código hasta verlas en verde.
 // ============================================================
 
-function tarifaPorHora(vehiculo) {
-    // Tu código aquí
+function tarifaPorHora(tipo) {
+  if (tipo === "carro") {
+    return 3000;
+  }
+  if (tipo === "moto") {
+    return 1500;
+  }
+  return 0;
 }
 
 // ============================================================
@@ -49,10 +55,10 @@ function tarifaPorHora(vehiculo) {
 // ============================================================
 
 function horasACobrar(minutos) {
-    if (minutos <= MINUTOS_CORTESIA) {
-        return 0;
-    }
-    return Math.floor(minutos / 60);
+  if (minutos <= 15) {
+    return 0;
+  }
+  return Math.ceil(minutos / 60);
 }
 
 // ============================================================
@@ -126,7 +132,10 @@ function aplicarTope(cobro, vehiculo) {
 // ============================================================
 
 function calcularCobro(vehiculo, entrada, salida) {
-    // Tu código aquí
+    const minutos = calcularMinutos(entrada, salida);
+    const horas = horasACobrar(minutos);
+    const cobro = horas * tarifaPorHora(vehiculo);
+    return aplicarTope(cobro, vehiculo);
 }
 
 // ============================================================
@@ -152,9 +161,12 @@ function calcularCobro(vehiculo, entrada, salida) {
 // ============================================================
 
 function aplicarSello(cobro, vehiculo) {
-    // Tu código aquí
+    const resultado = cobro - tarifaPorHora(vehiculo);
+    if (resultado < 0) {
+        return 0;
+    }
+    return resultado;
 }
-
 // No borres estas líneas: son la puerta por donde las pruebas usan tus funciones
 module.exports = {
     tarifaPorHora,
@@ -164,3 +176,6 @@ module.exports = {
     calcularCobro,
     aplicarSello,
 };
+
+
+
