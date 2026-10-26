@@ -47,12 +47,37 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+    });
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("10:00", "10:30")).toBe(30);
+    });
+
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+
+    test("carro", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+    });
+
+    test("carro", () => {
+        expect(aplicarTope(14000, "carro")).toBe(14000);
+    });
+
+    test("moto", () => {
+        expect(aplicarTope(30000, "moto")).toBe(12000);
+    });
+
+    test("moto", () => {
+        expect(aplicarTope(6000, "moto")).toBe(6000);
+    });
+
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====

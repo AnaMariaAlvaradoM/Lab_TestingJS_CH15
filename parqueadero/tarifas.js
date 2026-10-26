@@ -27,8 +27,17 @@ const TOPE_MOTO = 12000;
 // Corre npm test, mira cómo fallan y escribe el código hasta verlas en verde.
 // ============================================================
 
+
 function tarifaPorHora(vehiculo) {
-    // Tu código aquí
+
+     if (vehiculo === "carro"){
+        return TARIFA_CARRO; 
+    }
+        
+    else if  (vehiculo === "moto") {
+         return TARIFA_MOTO;
+    } 
+  return 0;
 }
 
 // ============================================================
@@ -49,10 +58,13 @@ function tarifaPorHora(vehiculo) {
 // ============================================================
 
 function horasACobrar(minutos) {
+
     if (minutos <= MINUTOS_CORTESIA) {
         return 0;
     }
-    return Math.floor(minutos / 60);
+    // ceil va al entero mayor
+     return Math.ceil(minutos/ 60 );  
+   
 }
 
 // ============================================================
@@ -126,7 +138,12 @@ function aplicarTope(cobro, vehiculo) {
 // ============================================================
 
 function calcularCobro(vehiculo, entrada, salida) {
-    // Tu código aquí
+
+    const minutos = calcularMinutos(entrada, salida);
+    const horas = horasACobrar(minutos);
+    const tot = horas * tarifaPorHora(vehiculo);
+
+    return aplicarTope(tot, vehiculo);
 }
 
 // ============================================================
