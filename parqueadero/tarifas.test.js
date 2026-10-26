@@ -47,12 +47,40 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("entre 7:45 y 9:10 han pasado 85 minutos", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+    });
+
+    test("entre 8:00 y 8:10 han pasado 10 minutos", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+
+    test("entre 7:00 y 12:20 han pasado 320 minutos", () => {
+        expect(calcularMinutos("07:00", "12:20")).toBe(320);
+    });
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("el cobro de la moto es de 15.000 pero paga el tope", () => {
+        expect(aplicarTope(15000, "moto")).toBe(12000);
+    });
+
+    test("el cobro de la moto es de 30.000 pero paga el tope", () => {
+        expect(aplicarTope(30000, "moto")).toBe(12000);
+    });
+
+    test("el cobro del carro es de 28.000 pero paga el tope", () => {
+        expect(aplicarTope(28000, "carro")).toBe(24000);
+    });
+
+    test("el cobro del carro es de 42.000 pero paga el tope", () => {
+        expect(aplicarTope(42000, "carro")).toBe(24000);
+    });
+
+    test("el cobro de la moto es de 6.000 por lo que solo paga ese monto", () => {
+        expect(aplicarTope(6000, "moto")).toBe(6000);
+    });
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +105,19 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("el cobro del carro era de $6.000 pero por mostrar el sello paga $3.000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+    
+    test("el cobro de la moto era de $4.500 pero por mostrar el sello paga $3.000", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("el cobro del carro era de $3.000 pero por mostrar el sello paga 0", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("el cobro del carro era de 0 y por mostrar el sello paga 0", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
 });
