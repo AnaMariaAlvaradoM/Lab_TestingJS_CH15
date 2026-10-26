@@ -47,12 +47,46 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("cuántos minutos pasaron entre una y otra",()=>{expect(calcularMinutos("07:45", "09:10")).toBe(85)});
+    test("cuántos minutos pasaron entre una y otra",() => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+    
+    test("cuántos minutos pasaron entre una y otra",() => {
+        expect(calcularMinutos("09:00", "10:10")).toBe(70);
+    });
+
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(39000, "carro")).toBe(24000)
+    });
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(9000, "carro")).toBe(9000)
+        
+    });
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(37000, "carro")).toBe(24000)
+        
+    });
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(3900, "carro")).toBe(3900)
+        
+    });
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(12000, "moto")).toBe(12000)
+    })
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(8000, "moto")).toBe(8000)
+    })
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(17000, "moto")).toBe(12000)
+    })
+    test("Ningún vehículo paga más de su tope del día:",()=>{
+        expect(aplicarTope(22000, "moto")).toBe(12000)
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
