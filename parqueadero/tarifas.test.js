@@ -102,5 +102,21 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+
+    test("carro paga 3000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("moto paga 3000", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("carro paga 0 (una hora exacta gratis)", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("No queda negativo", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
+
 });

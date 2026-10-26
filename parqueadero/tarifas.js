@@ -169,7 +169,12 @@ function calcularCobro(vehiculo, entrada, salida) {
 // ============================================================
 
 function aplicarSello(cobro, vehiculo) {
-    // Tu código aquí
+
+    const resultado = cobro - tarifaPorHora(vehiculo);
+    if (resultado < 0) {
+        return 0;
+    }
+    return resultado; 
 }
 
 // No borres estas líneas: son la puerta por donde las pruebas usan tus funciones
