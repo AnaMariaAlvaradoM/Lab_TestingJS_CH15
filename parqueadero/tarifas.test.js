@@ -47,12 +47,37 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+
+    test("calcula diferencia de una hora", () =>{
+        expect(calcularMinutos("9:30", "10:30")).toBe(60);
+    });
+
+    test("calcula diferencia de un minuto", () =>{
+        expect(calcularMinutos("10:10", "10:11")).toBe(1);
+    })
+
+    test("calcula el cambio de hora", () =>{
+        expect(calcularMinutos("11:55", "12:35")).toBe(40)
+    })
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("El carro supera el tope", () =>{
+       expect(aplicarTope(39000, "carro")).toBe(24000); 
+    })
+
+    test("El carro paga menos del tope", () =>{
+        expect(aplicarTope(6000, "carro")).toBe(6000);
+    })
+
+    test("La moto supera el tope", () =>{
+        expect(aplicarTope(18000, "moto")).toBe(12000);
+    })
+
+    test("La moto paga menos del tope", () =>{
+        expect(aplicarTope(5000, "moto")).toBe(5000)
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +102,20 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+
+    test("Promocion descuento de una hora para un carro", () =>{
+        expect(aplicarSello(6000, "carro")).toBe(3000)
+    })
+
+    test("Promocion descuento de una hora para una moto", () =>{
+        expect(aplicarSello(4500, "moto")).toBe(3000)
+    })
+
+    test("Valor carro 3000", () =>{
+        expect(aplicarSello(3000, "carro")).toBe(0)
+    })
+
+    test("Valor carro 0", () =>{
+        expect(aplicarSello(0, "carro")).toBe(0)
+    })
 });

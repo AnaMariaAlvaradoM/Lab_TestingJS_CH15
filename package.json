@@ -8,10 +8,28 @@
     "nota": "node scripts/calificar.js"
   },
   "jest": {
-    "roots": ["<rootDir>/parqueadero"],
+    "roots": [
+      "<rootDir>/parqueadero"
+    ],
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "jest": "30.5.2"
-  }
+    "jest": "^30.5.2"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyckveramon-dotcom/Lab_TestingJS_CH15.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nyckveramon-dotcom/Lab_TestingJS_CH15/issues"
+  },
+  "homepage": "https://github.com/nyckveramon-dotcom/Lab_TestingJS_CH15#readme"
 }
