@@ -47,12 +47,42 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+
+    test("Diferencia de pocos minutos en la misma hora", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+
+    test("calcular correctamente el tiempo cruzando horas", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+    });
+
+    test("debe devolver 0 si la hora de entrada y salida son iguales", () => {
+        expect(calcularMinutos("10:30", "10:30")).toBe(0);
+    });
+
+    test("debe calcular correctamente un rango largo dentro del mismo día", () => {
+        expect(calcularMinutos("08:00", "17:30")).toBe(570);
+    });
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+
+    test("debe limitar el cobro al tope máximo diario para un carro ($24000)", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+    });
+
+    test("debe mantener el cobro original si está por debajo del tope para un carro", () => {
+        expect(aplicarTope(6000, "carro")).toBe(6000);
+    });
+
+    test("debe limitar el cobro al tope máximo diario para una moto ($12000)", () => {
+        expect(aplicarTope(18000, "moto")).toBe(12000);
+    });
+
+    test("debe mantener el cobro original si está por debajo del tope para una moto", () => {
+        expect(aplicarTope(3000, "moto")).toBe(3000);
+    });
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +107,19 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("debe descontar 1 hora de carro ($3000) a un cobro existente", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("debe descontar 1 hora de moto ($1500) a un cobro existente", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("debe dejar el cobro en 0 si el descuento es igual al monto acumulado", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("debe garantizar que el cobro nunca sea negativo (monto menor que el descuento)", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
 });
