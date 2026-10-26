@@ -47,12 +47,37 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+    });
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+    test("Pasaron en minutos", () => {
+        expect(calcularMinutos("10:00", "10:30")).toBe(30);
+    });
+
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+
+    test("carro", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+    });
+
+    test("carro", () => {
+        expect(aplicarTope(14000, "carro")).toBe(14000);
+    });
+
+    test("moto", () => {
+        expect(aplicarTope(30000, "moto")).toBe(12000);
+    });
+
+    test("moto", () => {
+        expect(aplicarTope(6000, "moto")).toBe(6000);
+    });
+
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +102,21 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+
+    test("carro paga 3000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("moto paga 3000", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("carro paga 0 (una hora exacta gratis)", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("No queda negativo", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
+
 });
