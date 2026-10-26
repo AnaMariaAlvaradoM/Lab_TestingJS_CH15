@@ -8,10 +8,12 @@
     "nota": "node scripts/calificar.js"
   },
   "jest": {
-    "roots": ["<rootDir>/parqueadero"],
+    "roots": [
+      "<rootDir>/parqueadero"
+    ],
     "testEnvironment": "node"
   },
   "devDependencies": {
-    "jest": "30.5.2"
+    "jest": "^30.5.2"
   }
 }
