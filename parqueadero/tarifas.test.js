@@ -47,13 +47,38 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("calcula correctamente los minutos transcurridos en el mismo rango de hora", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+    });
+
+    test("calcula correctamente cuando cruza de una hora a otra con cambio de hora y minutos", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+    });
+
+    test("retorna cero cuando la entrada y salida son exactamente iguales", () => {
+        expect(calcularMinutos("10:30", "10:30")).toBe(0);
+    });
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("limita el cobro de un carro al TOPE_CARRO si excede el máximo", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+    });
+
+    test("respeta el cobro de un carro si está por debajo del TOPE_CARRO", () => {
+        expect(aplicarTope(6000, "carro")).toBe(6000);
+    });
+
+    test("limita el cobro de una moto al TOPE_MOTO si excede el máximo", () => {
+        expect(aplicarTope(15000, "moto")).toBe(12000);
+    });
+
+    test("respeta el cobro de una moto si está por debajo del TOPE_MOTO", () => {
+        expect(aplicarTope(4000, "moto")).toBe(4000);
+    });
 });
+
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
 describe("calcularCobro", () => {
@@ -77,5 +102,19 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("resta el valor de una hora de carro a un cobro de 6000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("resta el valor de una hora de moto a un cobro de 4500", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("retorna 0 si el cobro es igual al valor de una hora de carro", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("retorna 0 y evita números negativos si el cobro es menor al valor de la hora", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
 });
