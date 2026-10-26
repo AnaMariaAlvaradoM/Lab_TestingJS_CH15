@@ -27,8 +27,17 @@ const TOPE_MOTO = 12000;
 // Corre npm test, mira cómo fallan y escribe el código hasta verlas en verde.
 // ============================================================
 
-function tarifaPorHora(vehiculo) {
-    // Tu código aquí
+function tarifaPorHora(vehiculo) 
+{
+    // Tu código aquí: 
+
+    if (vehiculo === "carro") {
+        return TARIFA_CARRO;
+    }
+    if (vehiculo === "moto") {
+        return TARIFA_MOTO;
+    }
+    return 0;
 }
 
 // ============================================================
@@ -52,7 +61,7 @@ function horasACobrar(minutos) {
     if (minutos <= MINUTOS_CORTESIA) {
         return 0;
     }
-    return Math.floor(minutos / 60);
+    return Math.ceil(minutos / 60);
 }
 
 // ============================================================
@@ -76,6 +85,8 @@ function calcularMinutos(entrada, salida) {
     const minutosEntrada = Number(partesEntrada[0]) * 60 + Number(partesEntrada[1]);
     const minutosSalida = Number(partesSalida[0]) * 60 + Number(partesSalida[1]);
     return minutosSalida - minutosEntrada;
+
+    
 }
 
 // ============================================================
@@ -125,8 +136,17 @@ function aplicarTope(cobro, vehiculo) {
 // Si fallan todas, revisa primero los ejercicios 01 y 02.
 // ============================================================
 
-function calcularCobro(vehiculo, entrada, salida) {
-    // Tu código aquí
+function calcularCobro(vehiculo, entrada, salida) 
+
+{
+    // Tu código aquí:
+
+    const minutos = calcularMinutos(entrada, salida);
+    const horas = horasACobrar(minutos);
+    const valorHora = tarifaPorHora(vehiculo);
+    const subtotal = horas * valorHora;
+    return aplicarTope(subtotal, vehiculo);
+
 }
 
 // ============================================================
@@ -151,9 +171,21 @@ function calcularCobro(vehiculo, entrada, salida) {
 // Ejercicio 07: DESPUÉS escribe aquí el código hasta verlas en verde.
 // ============================================================
 
-function aplicarSello(cobro, vehiculo) {
-    // Tu código aquí
+function aplicarSello(cobro, vehiculo) 
+
+{
+    // Tu código aquí:
+
+    const descuento = tarifaPorHora(vehiculo);
+    const resultado = cobro - descuento;
+    if (resultado < 0) {
+        return 0;
+    }
+    return resultado;
 }
+
+
+
 
 // No borres estas líneas: son la puerta por donde las pruebas usan tus funciones
 module.exports = {
@@ -164,3 +196,5 @@ module.exports = {
     calcularCobro,
     aplicarSello,
 };
+
+
