@@ -48,11 +48,37 @@ describe("horasACobrar", () => {
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
     // Tu primera prueba aquí
+    test ("calcula los minutos entre las 08:00 y las 08:30", () => {
+        expect(calcularMinutos("08:00", "08:30")).toBe(30);
+    });
+
+    test ("calcula los minutos entre las 09:00 y las 10:30", () => {
+        expect(calcularMinutos("09:00", "10:30")).toBe(90);
+    });
+
+    test ("calcula los minutos entre las 11:00 y las 15:40", () => {
+        expect(calcularMinutos("11:00", "15:40")).toBe(280);
+    });
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
     // Tu primera prueba aquí
+    test ("calcula el tope a pagar para la MOTO si esta DENTRO del tope", () => {
+        expect(aplicarTope(5000, "moto")).toBe(5000);
+    });
+
+    test ("calcula el tope a pagar para el CARRO si esta DENTRO del tope", () => {
+        expect(aplicarTope(22000, "carro")).toBe(22000);
+    });
+
+    test ("calcula el tope a pagar para la MOTO si esta FUERA del tope", () => {
+        expect(aplicarTope(16000, "moto")).toBe(12000);
+    });
+
+    test ("calcula el tope a pagar para el CARRO si esta FUERA del tope", () => {
+        expect(aplicarTope(44000, "carro")).toBe(24000);
+    });
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -78,4 +104,24 @@ describe("calcularCobro", () => {
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
     // Tu primera prueba aquí
+    test("A un CARRO se le cobran 6.000 pero se le hace un descuento de CARRO de 1 hora y queda en 3.000 ", () => {
+        expect(aplicarSello(6000, "carro" )).toBe(3000);
+    });
+
+    test("A una MOTO se le cobran 4.500 pero se le hace un descuento de MOTO de 1 hora y queda en 3.000 ", () => {
+        expect(aplicarSello(4500, "moto" )).toBe(3000);
+    });
+
+    test("A un carro se le cobran 3.000 pero se le hace un descuento de CARRO de 1 hora y queda en 0 ", () => {
+        expect(aplicarSello(3000, "carro" )).toBe(0);
+    });
+
+    test("A un carro se le cobran 13.000 pero se le hace un descuento de CARRO de 1 hora y queda en 10.000", () => {
+        expect(aplicarSello(13000, "carro" )).toBe(10000);
+    });
+
+    test("El cobro no puede quedar negativo ", () => {
+        expect(aplicarSello(0, "moto" )).toBe(0);
+    });
+
 });
