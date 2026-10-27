@@ -47,12 +47,34 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("El resultado tiene que ser 0",()=>{
+        expect(calcularMinutos("09:00","09:00")).toBe(0)
+    })
+    test("El resultado debe ser 85 minutos",()=>{
+        expect(calcularMinutos("07:45","09:10")).toBe(85)
+    })
+    test("El resultado debe ser 10 minutos",()=>{
+        expect(calcularMinutos("09:00","09:10")).toBe(10)
+    })
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("Supero el tope permitido",()=>{
+        expect(aplicarTope(39000,"carro")).toBe(24000)
+    })
+    test("El monto no coincide con la tarifa",()=>{
+        expect(aplicarTope(3000,"carro")).toBe(3000)
+    })
+    test("Supero el monto permitido",()=>{
+        expect(aplicarTope(12000,"moto")).toBe(12000)
+    })
+    test("El monto no coincide con la tarifa",()=>{
+        expect(aplicarTope(6000,"moto")).toBe(6000) 
+    })
+    test("El tope asignado no es correcto",()=>{
+        expect(aplicarTope(24000,"moto")).toBe(12000)
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +99,16 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("Se aplico el descuento al carro",()=>{
+        expect(aplicarSello(6000,"carro")).toBe(3000)
+    });
+    test("Se aplico el descuento a la moto",()=>{
+        expect(aplicarSello(4500,"moto")).toBe(3000)
+    });
+    test("Se aplico el descuento al carro",()=>{
+        expect(aplicarSello(3000,"carro")).toBe(0)
+    })
+    test("El monto no es negativo",()=>{
+        expect(aplicarSello(0,"carro")).toBe(0)
+    })
 });
