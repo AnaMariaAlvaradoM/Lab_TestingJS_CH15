@@ -47,12 +47,45 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("de las 7:40 a las 8:00 pasaron 20 minutos", () =>{
+        expect(calcularMinutos("7:40","8:00")).toBe(20);
+    })
 });
 
+describe("calcularMinutos", ()=>{
+    test("un cliente deja el vehiculo de 10:36 y lo recoge a las 12:06", ()=>{ //cambié a vehiculo porq no habia caido en cuenta que no importa q vehiculo sea, solo es mins
+        expect(calcularMinutos("10:36","12:06")).toBe(90);
+    })
+})
+
+describe("calcularMinutos",()=>{
+    test("un cliente deja su vehiculo a la 1:20 y lo recoge a la 1:20", ()=>{
+        expect(calcularMinutos("1:20","1:20")).toBe(0);
+    })
+})
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("Un cliente deja su carro hasta que el cobro son 39.000, pero el cobro limite es 24.000 al dia",()=>{
+        expect(aplicarTope(39000,vehiculo="carro")).toBe(24000)
+    })
+});
+
+describe("aplicarTope", () => {
+    test("Un cliente deja su moto hasta que el cobro son 18.000, pero el cobro limite es 12.000 al dia",()=>{
+        expect(aplicarTope(18000,"moto")).toBe(12000) //pruebo lo mismo en moto, y sin tener q especificar la variable
+    })
+});
+
+describe("aplicarTope", () => {
+    test("Un cliente deja su carro y le cobran 6.000, como el limite es 24.000, deben pedirle los 6.000 ",()=>{
+        expect(aplicarTope(6000,"carro")).toBe(6000) 
+    })
+});
+
+describe("aplicarTope", () => {
+    test("Un cliente deja su moto y le cobran 4.500, como el limite es 12.000, deben pedirle los 4.500 ",()=>{
+        expect(aplicarTope(4500,"moto")).toBe(4500) 
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +110,23 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("una moto con un cobro de 5000 recibe un descuento por una hora", ()=>{
+        expect(aplicarSello(4500,"moto")).toBe(3000)
+    })   
 });
+describe("aplicarSello", () => {
+    test("un carro con un cobro de 6000 recibe un descuento por una hora", ()=>{
+        expect(aplicarSello(6000,"carro")).toBe(3000)
+    }) 
+});
+
+describe("aplicarSello",() =>{
+    test("un carro que no debe nada, recibe un descuento por una hora",()=>{
+        expect(aplicarSello(0,"carro")).toBe(0)
+    })
+})
+describe("aplicarSello",() =>{
+    test("una moto que no debe nada, recibe un descuento por una hora",()=>{
+        expect(aplicarSello(0,"moto")).toBe(0)
+    })
+})

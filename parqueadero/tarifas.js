@@ -28,7 +28,14 @@ const TOPE_MOTO = 12000;
 // ============================================================
 
 function tarifaPorHora(vehiculo) {
-    // Tu código aquí
+    if(vehiculo==="carro"){
+        return TARIFA_CARRO
+    }else if(vehiculo==="moto"){
+        return TARIFA_MOTO;
+    }else{
+        return 0
+    }    
+
 }
 
 // ============================================================
@@ -52,7 +59,8 @@ function horasACobrar(minutos) {
     if (minutos <= MINUTOS_CORTESIA) {
         return 0;
     }
-    return Math.floor(minutos / 60);
+    //return Math.floor(minutos / 60); linea q había q corregir
+    return Math.ceil(minutos / 60);
 }
 
 // ============================================================
@@ -126,7 +134,14 @@ function aplicarTope(cobro, vehiculo) {
 // ============================================================
 
 function calcularCobro(vehiculo, entrada, salida) {
-    // Tu código aquí
+    let minsTotales= calcularMinutos(entrada,salida)
+    let horasTotales= horasACobrar(minsTotales)
+    let valorHora= tarifaPorHora(vehiculo)
+    let cobroDiario = horasTotales*valorHora
+    let topeDiario= aplicarTope(cobroDiario,vehiculo)
+
+    return topeDiario
+    
 }
 
 // ============================================================
@@ -152,7 +167,14 @@ function calcularCobro(vehiculo, entrada, salida) {
 // ============================================================
 
 function aplicarSello(cobro, vehiculo) {
-    // Tu código aquí
+    let valorHora =tarifaPorHora(vehiculo)
+    let total=cobro-valorHora
+    if(total<0){
+        return 0
+    }else{
+        return total
+    }
+    
 }
 
 // No borres estas líneas: son la puerta por donde las pruebas usan tus funciones
