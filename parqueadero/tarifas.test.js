@@ -62,7 +62,21 @@ describe("calcularMinutos", () => {
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("un carro estuvo 10 horas en el parqueadero", () => {
+        expect(aplicarTope(30000, "carro")).toBe(24000);
+    })
+
+    test("una moto estuvo 9 horas en el parqueadero", () => {
+        expect(aplicarTope(13500, "moto")).toBe(12000);
+    })
+
+    test("una moto estuvo 6 horas en el parqueadero", () => {
+        expect(aplicarTope(9000, "moto")).toBe(9000);
+    })
+
+    test("un carro estuvo 5 horas en el parqueadero", () => {
+        expect(aplicarTope(15000, "carro")).toBe(15000);
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
