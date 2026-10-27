@@ -47,12 +47,36 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("calcula los minutos dentro de la misma hora", () => {
+        expect(calcularMinutos("08:00", "08:15")).toBe(15);
+    });
+
+    test("calcula una hora de diferencia", () => {
+        expect(calcularMinutos("09:00", "10:00")).toBe(60);
+    });
+
+    test("calcula los minutos pasada media hora", () => {
+        expect(calcularMinutos("10:30", "11:00")).toBe(30);
+    });
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("para carros cobra igual si es menor al tope", () => {
+        expect(aplicarTope(9000, "carro")).toBe(9000);
+    });
+
+    test("para carros cobra 24000 si supera el tope", () => {
+        expect(aplicarTope(30000, "carro")).toBe(24000);
+    });
+
+    test("para motos cobra igual si es menor al tope", () => {
+        expect(aplicarTope(4500, "moto")).toBe(4500);
+    });
+
+    test("para motos cobra 12000 si supera el tope", () => {
+        expect(aplicarTope(15000, "moto")).toBe(12000);
+    });
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +101,19 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+    test("descuenta una hora de carro ($3.000)", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("descuenta una hora de moto ($1.500)", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("si el cobro es igual a una hora, queda en $0", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("el cobro nunca queda negativo", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
 });
