@@ -47,7 +47,9 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("una moto de 9:00 a 9:14 no paga: es cortesía", () => {
+        expect(calcularMinutos("09:00", "09:14")).toBe();
+    })
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====

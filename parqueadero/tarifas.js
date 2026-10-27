@@ -28,7 +28,14 @@ const TOPE_MOTO = 12000;
 // ============================================================
 
 function tarifaPorHora(vehiculo) {
-    // Tu código aquí
+    const gratis = 0
+    if (vehiculo === "carro") {
+        return TARIFA_CARRO;
+    } else if (vehiculo === "moto") {
+        return TARIFA_MOTO;
+    } else {
+        return gratis
+    }
 }
 
 // ============================================================
@@ -51,7 +58,14 @@ function tarifaPorHora(vehiculo) {
 function horasACobrar(minutos) {
     if (minutos <= MINUTOS_CORTESIA) {
         return 0;
+    } else if (minutos > MINUTOS_CORTESIA && minutos < 61){
+        return 1;
+    } else if (minutos >= 61 && minutos < 150){
+        return 2;
+    } else if (minutos >= 150){
+        return 3
     }
+
     return Math.floor(minutos / 60);
 }
 
