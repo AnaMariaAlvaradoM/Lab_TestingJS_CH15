@@ -140,7 +140,12 @@ function aplicarTope(cobro, vehiculo) {
 // ============================================================
 
 function calcularCobro(vehiculo, entrada, salida) {
-    // Tu código aquí
+    const minutos = calcularMinutos(entrada, salida);
+    const horas = horasACobrar(minutos);
+    const valorHora = tarifaPorHora(vehiculo);
+    const cobro = horas * valorHora;
+
+    return aplicarTope(cobro, vehiculo);
 }
 
 // ============================================================
