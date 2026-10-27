@@ -48,11 +48,37 @@ describe("horasACobrar", () => {
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
     // Tu primera prueba aquí
+    test("Pasaron 130 minutos", () => {
+        expect(calcularMinutos("17:20","19:30")).toBe(130);
+    })
+
+    test("Pasaron 80 minutos", () => {
+        expect(calcularMinutos("11:20","12:40")).toBe(80);
+    })
+
+    test("Pasaron 25 minutos", () => {
+        expect(calcularMinutos("02:30","02:55")).toBe(25);
+    })
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
     // Tu primera prueba aquí
+    test("El carro supera el tope. Debe pagar el precio maximo: $24.000", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+    });
+
+    test("El carro esta debajo del tope. Debe pagar $6.000", () => {
+        expect(aplicarTope(6000, "carro")).toBe(6000);
+    });
+
+    test("La moto q supera el tope. Debe pagar el precio maximo: $12.000", () => {
+        expect(aplicarTope(18000, "moto")).toBe(12000);
+    });
+
+    test("La moto esta debajo del tope. . Debe pagar: $9.000", () => {
+        expect(aplicarTope(9000, "moto")).toBe(9000);
+    });
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -78,4 +104,19 @@ describe("calcularCobro", () => {
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
     // Tu primera prueba aquí
+    test("Se descuenta 1 hora, el valor final para este carro es de 3000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+    });
+
+    test("Se descuenta 1 hora, el valor final para esta moto es de 3000", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+    });
+
+    test("Se descuenta 1 hora, el valor final para este carro es de 0", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+    });
+
+    test("Se descuenta 1 hora, el cobro para este carro es negativo, por lo que el valor final es 0", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+    });
 });
