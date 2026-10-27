@@ -47,12 +47,36 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("una moto de 9:00 a 9:14, han pasado 14 min: es cortesía", () => {
+        expect(calcularMinutos("09:00", "09:14")).toBe(14);
+    });
+
+    test("un carro entro a las 7:30 y salió a la 1:45", () => {
+        expect(calcularMinutos("07:30", "13:45")).toBe(375);
+    })
+
+    test("un carro entro a las 19:20 y salió a las 00:23", () => {
+        expect(calcularMinutos("19:20", "23:22")).toBe(242);
+    })
 });
 
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("un carro estuvo 10 horas en el parqueadero", () => {
+        expect(aplicarTope(30000, "carro")).toBe(24000);
+    })
+
+    test("una moto estuvo 9 horas en el parqueadero", () => {
+        expect(aplicarTope(13500, "moto")).toBe(12000);
+    })
+
+    test("una moto estuvo 6 horas en el parqueadero", () => {
+        expect(aplicarTope(9000, "moto")).toBe(9000);
+    })
+
+    test("un carro estuvo 5 horas en el parqueadero", () => {
+        expect(aplicarTope(15000, "carro")).toBe(15000);
+    })
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
