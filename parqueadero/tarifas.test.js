@@ -47,12 +47,33 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
+    test("calcula correctamente los minutos entre las 07:45 y las 09:10", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+});
 });
 
+describe("calcularMinutos", () => {
+    test("calcula correctamente los minutos entre las 07:45 y las 09:10", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+});
+});
+
+describe("calcularMinutos", () => {
+    test("calcula correctamente los minutos entre las 07:45 y las 09:10", () => {
+        expect(calcularMinutos("08:45", "09:10")).toBe(25);
+});
+});
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+    test("Un carro que supere el tope, paga máximo 24000", () => {
+        expect(aplicarTope(39000, "carro")).toBe(24000);
+});
+});
+
+describe("aplicarTope", () => {
+    test("Un carro que esté por debajo del tope, paga el valor normal", () => {
+        expect(aplicarTope(6000, "carro")).toBe(6000);
+});
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
