@@ -47,8 +47,16 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    test("una moto de 9:00 a 9:14 no paga: es cortesía", () => {
-        expect(calcularMinutos("09:00", "09:14")).toBe();
+    test("una moto de 9:00 a 9:14, han pasado 14 min: es cortesía", () => {
+        expect(calcularMinutos("09:00", "09:14")).toBe(14);
+    });
+
+    test("un carro entro a las 7:30 y salió a la 1:45", () => {
+        expect(calcularMinutos("07:30", "13:45")).toBe(375);
+    })
+
+    test("un carro entro a las 19:20 y salió a las 00:23", () => {
+        expect(calcularMinutos("19:20", "23:22")).toBe(242);
     })
 });
 
