@@ -47,12 +47,41 @@ describe("horasACobrar", () => {
 
 // ===== Ejercicio 03 · Escribe tú las pruebas (mínimo 3) =====
 describe("calcularMinutos", () => {
-    // Tu primera prueba aquí
-});
+   
+     test("de 08:00 a 09:00 hay 60 minutos", () => {
+        expect(calcularMinutos("08:00", "09:00")).toBe(60);
+        });
 
+    test("de 07:45 a 09:10 hay 85 minutos", () => {
+        expect(calcularMinutos("07:45", "09:10")).toBe(85);
+       });
+
+    test("de 08:00 a 08:10 hay 10 minutos", () => {
+        expect(calcularMinutos("08:00", "08:10")).toBe(10);
+       });
+});    
+   
 // ===== Ejercicio 04 · Escribe tú las pruebas (mínimo 4, con carros y motos) =====
 describe("aplicarTope", () => {
-    // Tu primera prueba aquí
+
+     describe("aplicarTope", () => {
+    test("carro por debajo del tope", () => {
+        expect(aplicarTope(8000, "carro")).toBe(8000);
+       });
+
+    test("carro por encima del tope", () => {
+        expect(aplicarTope(28000, "carro")).toBe(24000);
+       });
+
+    test("moto por debajo del tope", () => {
+        expect(aplicarTope(6000, "moto")).toBe(6000);
+       });
+
+    test("moto por encima del tope", () => {
+        expect(aplicarTope(13000, "moto")).toBe(12000);
+       });
+});
+   
 });
 
 // ===== Ejercicio 05 · Estas pruebas ya están escritas: haz que pasen =====
@@ -77,5 +106,21 @@ describe("calcularCobro", () => {
 // ===== Ejercicio 06 · TDD: escribe PRIMERO estas pruebas (mínimo 4) =====
 // Usa la tabla de criterios que está en tarifas.js, encima de aplicarSello.
 describe("aplicarSello", () => {
-    // Tu primera prueba aquí
+  
+    test("un carro de 6000 queda en 3000", () => {
+        expect(aplicarSello(6000, "carro")).toBe(3000);
+       });
+
+    test("una moto de 4500 queda en 3000", () => {
+        expect(aplicarSello(4500, "moto")).toBe(3000);
+       });
+
+    test("un carro de 3000 queda en 0", () => {
+        expect(aplicarSello(3000, "carro")).toBe(0);
+       });
+
+    test("un cobro de 0 sigue siendo 0", () => {
+        expect(aplicarSello(0, "carro")).toBe(0);
+       });
 });
+
